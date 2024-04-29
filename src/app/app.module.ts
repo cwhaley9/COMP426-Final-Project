@@ -1,13 +1,12 @@
 import { NgModule } from '@angular/core';
-import {BrowserModule} from '@angular/platform-browser';
-
+import { CommonModule } from '@angular/common';
 import { RouterModule, Routes } from '@angular/router';
 
 import { AppComponent } from './app.component';
 import { RegisterAccountComponent } from './register-account/register-account.component';
 
 const routes: Routes = [
-  {path: 'register', component: RegisterAccountComponent}
+  { path: 'register', component: RegisterAccountComponent }
 ];
 
 @NgModule({
@@ -16,7 +15,7 @@ const routes: Routes = [
     RegisterAccountComponent
   ],
   imports: [
-    BrowserModule,
+    CommonModule,
     RouterModule.forRoot(routes)
   ],
   bootstrap: [AppComponent]
