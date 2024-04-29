@@ -2,8 +2,7 @@ import { Component } from '@angular/core';
 
 @Component({
   selector: 'app-register-account',
-  standalone: true,
-  imports: [],
+  standalone: false,
   templateUrl: './register-account.component.html',
   styleUrls: ['./register-account.component.css']
 })
