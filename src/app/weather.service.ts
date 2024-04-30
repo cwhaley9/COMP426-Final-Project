@@ -3,16 +3,26 @@ import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 
 @Injectable({
-  providedIn: 'root',
+  providedIn: 'root', // Ensures a singleton instance across the app
 })
 export class WeatherService {
-  private baseURL: string = 'https://api.openweathermap.org/data/2.5/weather';
-  private apiKey: string = '496521b4b6eefd87265e7561f2f4842e'; // Replace this with your actual API key
+  private openWeatherBaseURL: string = 'https://api.openweathermap.org/data/3.0/onecall';
+  private openWeatherApiKey: string = '496521b4b6eefd87265e7561f2f4842e'; // Replace this with your actual API key
+  private googleGeocodingApiUrl: string = 'https://maps.googleapis.com/maps/api/geocode/json';
+  private googleApiKey: string = 'AIzaSyBOH1PjJfQzwQrlR-_dtniFi3X_r1rZbho';
 
   constructor(private http: HttpClient) {}
 
-  getWeatherByCity(cityName: string): Observable<any> {
-    const url = `${this.baseURL}?q=${cityName}&appid=${this.apiKey}&units=metric`;
-    return this.http.get(url);
+  getWeatherByCity(lat: string, long: string): Observable<any> {
+    return this.http.get(`${this.openWeatherBaseURL}?lat=${lat}&lon=${long}&units=imperial&exclude={part}&appid=${this.openWeatherApiKey}`);
+  }
+
+
+  getCoordinatesByCity(city: string): Observable<any> {
+    return this.http.get(`${this.googleGeocodingApiUrl}?address=${city}&key=${this.googleApiKey}`);
+  }
+
+  getReverseGeocode(lat: number, lon: number): Observable<any> {
+    return this.http.get(`${this.googleGeocodingApiUrl}?latlng=${lat},${lon}&key=${this.googleApiKey}`);
   }
 }

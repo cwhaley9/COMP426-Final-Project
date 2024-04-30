@@ -7,22 +7,28 @@ import { RegisterAccountComponent } from './register-account/register-account.co
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
 import { WeatherComponent } from './weather/weather.component';
+import { BrowserModule } from '@angular/platform-browser';
+import { WeatherService } from './weather.service';
 
 export const routes: Routes = [
-  { path: 'register', component: RegisterAccountComponent }
+  { path: 'register', component: RegisterAccountComponent },
+  { path: 'weather', component: WeatherComponent }
 ];
 
 @NgModule({
   declarations: [
     RegisterAccountComponent,
-    WeatherComponent
   ],
   imports: [
     CommonModule,
     RouterModule.forRoot(routes),
     HttpClientModule,
-    FormsModule
+    FormsModule,
+    BrowserModule,
+    WeatherComponent,
+    AppComponent,
   ],
+  providers: [WeatherService],
   bootstrap: []
 })
 export class AppModule { }
