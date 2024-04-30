@@ -1,4 +1,7 @@
 import { Component } from '@angular/core';
+import { User } from './registration.models';
+import { NgForm } from '@angular/forms';
+import { RegisterAccountService } from './register-account.service';
 
 @Component({
   selector: 'app-register-account',
@@ -8,7 +11,13 @@ import { Component } from '@angular/core';
 })
 export class RegisterAccountComponent {
 
-  onSubmit(){
-    console.log("success");
+  constructor(private registerService: RegisterAccountService) {}
+
+  onSubmit(form: NgForm){
+    let user: User;
+    if (form.valid){
+      user = form.value;
+      this.registerService.createUser(user);
+    }
   }
 }

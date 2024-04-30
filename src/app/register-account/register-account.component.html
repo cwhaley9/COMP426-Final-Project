@@ -1,6 +1,6 @@
 <body>
     <div class="center">
-        <form (ngSubmit)="onSubmit()" #registerForm="ngForm" class="form-container">
+        <form (ngSubmit)="onSubmit(registerForm)" #registerForm="ngForm" class="form-container">
             <div class="form-field">
             <label for="username" class="form-label">Username:</label>
             <input type="text" id="username" name="username" ngModel required class="form-control">
