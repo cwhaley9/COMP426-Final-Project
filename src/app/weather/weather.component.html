@@ -1,0 +1,35 @@
+<body>
+<div class="weather-container">
+  <div class="weather-box">
+    <div class="weather-details" *ngIf="weatherInfo && city && country">
+      <div class="weather-detail">
+        <img src="http://openweathermap.org/img/wn/{{weatherInfo.current.weather[0].icon}}.png" alt="Weather Icon" class="weather-icon">
+        <ul class="weather-list">
+          <p><strong></strong> {{ currentDate | date: 'medium' }}</p>
+          <li><strong>City:</strong> {{ city }}</li>
+          <li><strong>Country:</strong> {{ country }}</li>
+          <li><strong>Weather:</strong> {{ weatherInfo.current.weather[0].description }}</li>
+          <li><strong>Temperature:</strong> {{ weatherInfo.current.temp }}</li>
+          <li><strong>Feels Like:</strong> {{ weatherInfo.current.feels_like }}</li>
+          <li><strong>Humidity:</strong> {{ weatherInfo.current.humidity }}</li>
+          <li><strong>Wind Speed:</strong> {{ weatherInfo.current.wind_speed }}</li>
+        </ul>
+      </div>
+    </div>
+    <div class="city-input">
+      <input type="text" placeholder="Enter city name" [(ngModel)]="city">
+      <button (click)="getWeather()">Get Weather</button>
+    </div>
+  </div>
+
+  <div class="forecast-container" *ngIf="forecastInfo">
+    <h2>Forecast</h2>
+    <div *ngFor="let forecast of forecastInfo.list">
+      <p>{{ forecast.dt_txt }}</p>
+      <p>Temperature: {{ forecast.main.temp }}</p>
+      <p>Weather: {{ forecast.weather[0].description }}</p>
+      <!-- Add additional forecast information as needed -->
+    </div>
+  </div>
+</div>
+</body>
