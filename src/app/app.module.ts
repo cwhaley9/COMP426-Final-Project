@@ -5,7 +5,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { AppComponent } from './app.component';
 import { RegisterAccountComponent } from './register-account/register-account.component';
 
-const routes: Routes = [
+export const routes: Routes = [
   { path: 'register', component: RegisterAccountComponent }
 ];
 
