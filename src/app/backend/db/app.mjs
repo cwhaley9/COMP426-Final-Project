@@ -37,16 +37,17 @@ app.post('/api/users', async (req, res) => {
     let username = req.body.username;
     let password = req.body.password;
 
-    let user = await db.run("INSERT INTO users (username, password) VALUES (?, ?)", [username, password]);
+    let user = await db.run("INSERT INTO users (username, password, city) VALUES (?, ?, ?)", [username, password, 'New York City']);
     res.json(user);
 })
 
 app.put('/api/users/:username', async (req, res) => { 
     let username = req.params.username;
     let password = req.body.password;
+    let city = req.body.city;
     
     if(username){
-        let user = await db.run("UPDATE users SET username = ?, password = ? WHERE username = ?", [username, password, username]);
+        let user = await db.run("UPDATE users SET username = ?, password = ?, city = ? WHERE username = ?", [username, password, city, username]);
         res.json(user);
     } else {
         res.status(400).send("username is null or undefined");    
