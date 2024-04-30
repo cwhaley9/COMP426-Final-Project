@@ -11,13 +11,12 @@ export const routes: Routes = [
 
 @NgModule({
   declarations: [
-    AppComponent,
     RegisterAccountComponent
   ],
   imports: [
     CommonModule,
     RouterModule.forRoot(routes)
   ],
-  bootstrap: [AppComponent]
+  bootstrap: []
 })
 export class AppModule { }
