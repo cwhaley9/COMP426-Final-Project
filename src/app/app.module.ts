@@ -8,6 +8,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { BrowserModule } from '@angular/platform-browser';
 import { WeatherService } from './weather.service';
 import { LoginAccountComponent } from './login-account/login-account.component';
+import { AppComponent } from './app.component';
 
 export const routes: Routes = [
   { path: 'register', component: RegisterAccountComponent },
@@ -16,9 +17,8 @@ export const routes: Routes = [
 ];
 
 @NgModule({
-  declarations: [
+  declarations: [ 
     RegisterAccountComponent,
-    register-accounts-wip,
     LoginAccountComponent
   ],
   imports: [
