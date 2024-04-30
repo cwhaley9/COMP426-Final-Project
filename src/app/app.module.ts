@@ -4,6 +4,9 @@ import { RouterModule, Routes } from '@angular/router';
 
 import { AppComponent } from './app.component';
 import { RegisterAccountComponent } from './register-account/register-account.component';
+import { HttpClientModule } from '@angular/common/http';
+import { FormsModule } from '@angular/forms';
+import { WeatherComponent } from './weather/weather.component';
 
 export const routes: Routes = [
   { path: 'register', component: RegisterAccountComponent }
@@ -11,11 +14,14 @@ export const routes: Routes = [
 
 @NgModule({
   declarations: [
-    RegisterAccountComponent
+    RegisterAccountComponent,
+    WeatherComponent
   ],
   imports: [
     CommonModule,
-    RouterModule.forRoot(routes)
+    RouterModule.forRoot(routes),
+    HttpClientModule,
+    FormsModule
   ],
   bootstrap: []
 })
