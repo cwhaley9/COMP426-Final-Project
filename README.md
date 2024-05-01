@@ -3,4 +3,4 @@ Our Angular application utilizes a sqlite database to register users and a 3rd p
 
 You can run the application using: npm run start:both
 
-#### Link to presentation: https://drive.google.com/file/d/1EwSK4bgGDdwEVyT-pUzTtUinfe7wX0Dx/view?usp=drive_link
+#### Link to presentation: https://drive.google.com/file/d/1CNHrXunqgaYXiDzC4n831KNk0jw5mrYz/view?usp=sharing
