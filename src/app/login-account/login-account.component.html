@@ -1,6 +1,6 @@
 <body>
-    <div class="center">
-        <form id='register-form' (ngSubmit)="onSubmit(registerForm)" #registerForm="ngForm" class="form-container">
+    <div id='form-container' class="center">
+        <form id='login-form' (ngSubmit)="onSubmit(loginForm)" #loginForm="ngForm" class="form-container">
             <div class="form-field">
             <label for="username" class="form-label">Username:</label>
             <input type="text" id="username" name="username" ngModel required class="form-control">
@@ -9,11 +9,7 @@
             <label for="password" class="form-label">Password:</label>
             <input type="password" id="password" name="password" ngModel required class="form-control">
             </div>
-            <button type="submit" [disabled]="!registerForm.valid" class="btn btn-primary">Register</button>
+            <button type="submit" [disabled]="!loginForm.valid" class="btn btn-primary">Sign In</button>
         </form>
     </div>
 </body>
-
-
-  
-  
