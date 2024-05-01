@@ -3,8 +3,6 @@ import { CommonModule } from '@angular/common'; // Needed for common directives
 import { HttpClientModule } from '@angular/common/http'; // Import HttpClientModule for HttpClient
 import { WeatherService } from '../weather.service'; // Ensure the path is correct
 import { FormsModule } from '@angular/forms';
-import { AuthenticateService } from '../login-account/authenticate.service';
-import { User } from '../app.models';
 
 @Component({
   selector: 'app-weather',
@@ -22,38 +20,14 @@ export class WeatherComponent implements OnInit {
   lat: number = 0;
   long: number = 0;
 
-  constructor(
-    private weatherService: WeatherService, 
-    private authService: AuthenticateService
-  ) {}
+  constructor(private weatherService: WeatherService) {}
 
-  ngOnInit(): void {
-    let user = this.authService.getAuthenticatedUser();
-    if(user){
-      let defaultCity = user.city;
-      this.city = defaultCity;
-      this.getWeather();
-    }
-  }
+  ngOnInit(): void {}
+
 
   getWeather(): void {
     this.weatherService.getCoordinatesByCity(this.city).subscribe(
       (data: any) => {
-
-        let user: User | null = this.authService.getAuthenticatedUser();
-        if(user) {
-          // add this city as the default for this user
-          this.weatherService.addDefaultCity(this.city, user).subscribe({
-            next: (response) => {
-              console.log('Updated default city!')
-            },
-            error: (error) => {
-              console.log("An error occurred trying to update the user's default city: ", error);
-            }
-          });
-        }
-        
-
         // Extract latitude and longitude from the API response
         console.log("below is location");
         const location = data.results[0].geometry.location;
@@ -95,26 +69,5 @@ export class WeatherComponent implements OnInit {
         console.error('Error fetching coordinates:', error);
       }
     );
-  }
-
-  getBackgroundImage(): string {
-    if (!this.weatherInfo) return ''; // Return empty string if weather data is not available
-
-    const condition = this.weatherInfo.current.weather[0].main.toLowerCase();
-    switch (condition) {
-      case 'thunderstorm':
-        return 'url(https://images.pexels.com/photos/2684011/pexels-photo-2684011.jpeg?cs=srgb&dl=pexels-amolmande-2684011.jpg&fm=jpg)';
-      case 'drizzle':
-      case 'rain':
-        return 'url(https://static.vecteezy.com/system/resources/previews/029/772/287/large_2x/human-daily-life-on-rainy-day-enjoying-rainfall-and-happy-life-lively-rainy-season-concept-generative-ai-free-photo.jpeg)';
-      case 'snow':
-        return 'url(https://t3.ftcdn.net/jpg/03/00/23/96/360_F_300239640_0N7DxFH5cejBwKBcbdKxQB1xPn8DMn7D.jpg)';
-      case 'clear':
-        return 'url(https://wallpapers.com/images/hd/sunny-day-wallpaper-nt4lvs3h86s3ax7j.jpg)';
-      case 'clouds':
-        return 'url(https://img.freepik.com/free-photo/field-yellow-flowers-with-hills-cloudy-sky_181624-14655.jpg)';
-      default:
-        return 'url(https://wallpapers.com/images/hd/sunny-day-wallpaper-nt4lvs3h86s3ax7j.jpg)';
-    }
   }
 }

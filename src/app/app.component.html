@@ -20,13 +20,14 @@
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
-                    <li class="nav-item"><a #homeLink class="nav-link active" aria-current="page" style="cursor: pointer" (click)="onNavSelect($event, '')">Home</a></li>
-                    <li class="nav-item"><a #registerLink class="nav-link" style="cursor: pointer" (click)="onNavSelect($event, '/register')">Register</a></li>
-                    <li class="nav-item"><a #loginLink class="nav-link" style="cursor: pointer" (click)="onNavSelect($event, '/login')">Sign In</a></li>
-
-                    <li class="nav-item dropdown"> 
+                    <li class="nav-item"><a class="nav-link active" aria-current="page" routerLink="">Home</a></li>
+                    <li class="nav-item"><a class="nav-link" routerLink="/register">Register</a></li>
+                    <li class="nav-item"><a class="nav-link" routerLink="/login">Sign In</a></li>
+                    <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" id="navbarDropdown" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">Profile</a>
                         <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
+                            <li><a class="dropdown-item" href="#">Details</a></li>
+                            <li><hr class="dropdown-divider"/></li>
                             <li><a class="dropdown-item" (click)="this.authService.setAuthenticatedUser(null)">Log Out</a></li>
                             <li><a class="dropdown-item" style="color: red;" (click)="this.deleteAuthenticatedUser()">Delete Account</a></li>
                         </ul>
