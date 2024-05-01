@@ -36,7 +36,6 @@ export class WeatherComponent implements OnInit {
     }
   }
 
-
   getWeather(): void {
     this.weatherService.getCoordinatesByCity(this.city).subscribe(
       (data: any) => {
