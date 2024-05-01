@@ -3,6 +3,8 @@ import { CommonModule } from '@angular/common'; // Needed for common directives
 import { HttpClientModule } from '@angular/common/http'; // Import HttpClientModule for HttpClient
 import { WeatherService } from '../weather.service'; // Ensure the path is correct
 import { FormsModule } from '@angular/forms';
+import { AuthenticateService } from '../login-account/authenticate.service';
+import { User } from '../app.models';
 
 @Component({
   selector: 'app-weather',
@@ -20,14 +22,38 @@ export class WeatherComponent implements OnInit {
   lat: number = 0;
   long: number = 0;
 
-  constructor(private weatherService: WeatherService) {}
+  constructor(
+    private weatherService: WeatherService, 
+    private authService: AuthenticateService
+  ) {}
 
-  ngOnInit(): void {}
-
+  ngOnInit(): void {
+    let user = this.authService.getAuthenticatedUser();
+    if(user){
+      let defaultCity = user.city;
+      this.city = defaultCity;
+      this.getWeather();
+    }
+  }
 
   getWeather(): void {
     this.weatherService.getCoordinatesByCity(this.city).subscribe(
       (data: any) => {
+
+        let user: User | null = this.authService.getAuthenticatedUser();
+        if(user) {
+          // add this city as the default for this user
+          this.weatherService.addDefaultCity(this.city, user).subscribe({
+            next: (response) => {
+              console.log('Updated default city!')
+            },
+            error: (error) => {
+              console.log("An error occurred trying to update the user's default city: ", error);
+            }
+          });
+        }
+        
+
         // Extract latitude and longitude from the API response
         console.log("below is location");
         const location = data.results[0].geometry.location;
