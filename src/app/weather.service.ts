@@ -4,11 +4,11 @@ import { Observable } from 'rxjs';
 import { User } from './app.models';
 
 @Injectable({
-  providedIn: 'root', // Ensures a singleton instance across the app
+  providedIn: 'root',
 })
 export class WeatherService {
   private openWeatherBaseURL: string = 'https://api.openweathermap.org/data/3.0/onecall';
-  private openWeatherApiKey: string = '496521b4b6eefd87265e7561f2f4842e'; // Replace this with your actual API key
+  private openWeatherApiKey: string = '496521b4b6eefd87265e7561f2f4842e'; 
   private googleGeocodingApiUrl: string = 'https://maps.googleapis.com/maps/api/geocode/json';
   private googleApiKey: string = 'AIzaSyBOH1PjJfQzwQrlR-_dtniFi3X_r1rZbho';
 

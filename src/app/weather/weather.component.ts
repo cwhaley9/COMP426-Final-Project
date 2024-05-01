@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { CommonModule } from '@angular/common'; // Needed for common directives
-import { HttpClientModule } from '@angular/common/http'; // Import HttpClientModule for HttpClient
-import { WeatherService } from '../weather.service'; // Ensure the path is correct
+import { CommonModule } from '@angular/common';
+import { HttpClientModule } from '@angular/common/http'; 
+import { WeatherService } from '../weather.service'; 
 import { FormsModule } from '@angular/forms';
 import { AuthenticateService } from '../login-account/authenticate.service';
 import { User } from '../app.models';
@@ -11,7 +11,7 @@ import { User } from '../app.models';
   templateUrl: './weather.component.html',
   styleUrls: ['./weather.component.css'],
   standalone: true,
-  imports: [CommonModule, HttpClientModule, FormsModule] // Include HttpClientModule and CommonModule
+  imports: [CommonModule, HttpClientModule, FormsModule]
 })
 export class WeatherComponent implements OnInit {
   city: string = ''
@@ -42,7 +42,6 @@ export class WeatherComponent implements OnInit {
 
         let user: User | null = this.authService.getAuthenticatedUser();
         if(user) {
-          // add this city as the default for this user
           this.weatherService.addDefaultCity(this.city, user).subscribe({
             next: (response) => {
               console.log('Updated default city!')
@@ -54,20 +53,17 @@ export class WeatherComponent implements OnInit {
         }
         
 
-        // Extract latitude and longitude from the API response
         console.log("below is location");
         const location = data.results[0].geometry.location;
         console.log(location);
         const lat = location.lat;
         const lon = location.lng;
   
-        // Once coordinates are obtained, fetch weather data using these coordinates
         this.weatherService.getWeatherByCity(lat, lon).subscribe(
           (weatherData: any) => {
             this.weatherInfo = weatherData;
             console.log(weatherData);
-  
-            // Fetch city and country information using reverse geocoding
+
             this.weatherService.getReverseGeocode(lat, lon).subscribe(
               (reverseGeocodeData: any) => {
                 console.log("below is reverseGeocodeData");
@@ -76,7 +72,6 @@ export class WeatherComponent implements OnInit {
                 const city = addressComponents.find((component: { types: string | string[]; }) => component.types.includes('locality'))?.long_name;
                 const country = addressComponents.find((component: { types: string | string[]; }) => component.types.includes('country'))?.long_name;
   
-                // Assign city and country to display in the UI
                 this.city = city;
                 this.country = country;
                 console.log(this.city + this.country)
@@ -98,7 +93,7 @@ export class WeatherComponent implements OnInit {
   }
 
   getBackgroundImage(): string {
-    if (!this.weatherInfo) return ''; // Return empty string if weather data is not available
+    if (!this.weatherInfo) return 'url(https://wallpapers.com/images/hd/sunny-day-wallpaper-nt4lvs3h86s3ax7j.jpg)'; // Return empty string if weather data is not available
 
     const condition = this.weatherInfo.current.weather[0].main.toLowerCase();
     switch (condition) {

@@ -70,7 +70,7 @@ body{
 
   .daily-forecast {
   display: flex;
-  overflow-x: auto; /* Enable horizontal scrolling */
+  overflow-x: auto;
   padding: 10px;
 }
 

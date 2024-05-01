@@ -37,7 +37,6 @@ export class AppComponent {
     this.router.navigate([route]);
     event.preventDefault();
   
-    // Remove the 'active' class from all navigation links
     const navLinks = document.querySelectorAll('.nav-link');
     navLinks.forEach((link) => {
       link.classList.remove('active');
@@ -46,7 +45,6 @@ export class AppComponent {
     const clickedElement = event.target as HTMLElement;
     clickedElement.classList.add('active');
   
-    // Perform any other action here, such as navigating to the selected route
     console.log('Selected route:', route);
   }
 }
