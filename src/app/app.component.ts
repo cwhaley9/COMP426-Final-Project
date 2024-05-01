@@ -48,3 +48,4 @@ export class AppComponent {
     console.log('Selected route:', route);
   }
 }
+
