@@ -22,13 +22,15 @@
     </div>
   </div>
 
-  <div class="forecast-container" *ngIf="forecastInfo">
+  <div class="forecast-container" *ngIf="weatherInfo">
     <h2>Forecast</h2>
-    <div *ngFor="let forecast of forecastInfo.list">
-      <p>{{ forecast.dt_txt }}</p>
-      <p>Temperature: {{ forecast.main.temp }}</p>
-      <p>Weather: {{ forecast.weather[0].description }}</p>
-      <!-- Add additional forecast information as needed -->
+    <div class="daily-forecast" *ngFor="let day of weatherInfo.daily">
+      <div class="forecast-detail">
+        <p><strong>{{ (day.dt | date: 'EEEE') }}</strong></p>
+        <img src="http://openweathermap.org/img/wn/{{day.weather[0].icon}}.png" alt="Weather Icon" class="weather-icon">
+        <p><strong>High:</strong> {{ day.temp.max }}</p>
+        <p><strong>Low:</strong> {{ day.temp.min }}</p>
+      </div>
     </div>
   </div>
 </div>
