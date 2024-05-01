@@ -12,7 +12,7 @@ import { AuthenticateService } from './authenticate.service';
 })
 export class LoginAccountComponent {
 
-  authenticatedUser: User = {username: 'guest', password: 'guest', city: 'New York City'};
+  authenticatedUser: User = {username: 'guest', password: 'guest'};
 
   constructor(
     private loginService: LoginAccountService,
