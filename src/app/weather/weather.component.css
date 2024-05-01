@@ -12,10 +12,17 @@ body{
 }
 .weather-container {
     display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
     height: 100vh;
   }
+
+  .forecast-container {
+    display: flex;
+    overflow-x: auto;
+    padding: 10px;
+}
   
   .weather-box {
     background-color: #333333;
@@ -58,4 +65,23 @@ body{
     border-radius: 5px;
     cursor: pointer;
   }
+
+  .daily-forecast {
+  display: flex;
+  overflow-x: auto; /* Enable horizontal scrolling */
+  padding: 10px;
+}
+
+.forecast-card {
+  background-color: #333333;
+  padding: 10px;
+  margin-right: 10px;
+  border-radius: 10px;
+  color: #fff;
+}
+
+.forecast-detail {
+  text-align: center;
+}
+
   
