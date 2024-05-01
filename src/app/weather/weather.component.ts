@@ -96,4 +96,25 @@ export class WeatherComponent implements OnInit {
       }
     );
   }
+
+  getBackgroundImage(): string {
+    if (!this.weatherInfo) return ''; // Return empty string if weather data is not available
+
+    const condition = this.weatherInfo.current.weather[0].main.toLowerCase();
+    switch (condition) {
+      case 'thunderstorm':
+        return 'url(https://images.pexels.com/photos/2684011/pexels-photo-2684011.jpeg?cs=srgb&dl=pexels-amolmande-2684011.jpg&fm=jpg)';
+      case 'drizzle':
+      case 'rain':
+        return 'url(https://static.vecteezy.com/system/resources/previews/029/772/287/large_2x/human-daily-life-on-rainy-day-enjoying-rainfall-and-happy-life-lively-rainy-season-concept-generative-ai-free-photo.jpeg)';
+      case 'snow':
+        return 'url(https://t3.ftcdn.net/jpg/03/00/23/96/360_F_300239640_0N7DxFH5cejBwKBcbdKxQB1xPn8DMn7D.jpg)';
+      case 'clear':
+        return 'url(https://wallpapers.com/images/hd/sunny-day-wallpaper-nt4lvs3h86s3ax7j.jpg)';
+      case 'clouds':
+        return 'url(https://img.freepik.com/free-photo/field-yellow-flowers-with-hills-cloudy-sky_181624-14655.jpg)';
+      default:
+        return 'url(https://wallpapers.com/images/hd/sunny-day-wallpaper-nt4lvs3h86s3ax7j.jpg)';
+    }
+  }
 }

@@ -1,4 +1,4 @@
-<body>
+<body [ngStyle]="{ 'background-image': getBackgroundImage() }">
 <div class="weather-container">
   <div class="weather-box">
     <div class="weather-details" *ngIf="weatherInfo && city && country">
@@ -9,10 +9,10 @@
           <li><strong>City:</strong> {{ city }}</li>
           <li><strong>Country:</strong> {{ country }}</li>
           <li><strong>Weather:</strong> {{ weatherInfo.current.weather[0].description }}</li>
-          <li><strong>Temperature:</strong> {{ weatherInfo.current.temp }}</li>
-          <li><strong>Feels Like:</strong> {{ weatherInfo.current.feels_like }}</li>
-          <li><strong>Humidity:</strong> {{ weatherInfo.current.humidity }}</li>
-          <li><strong>Wind Speed:</strong> {{ weatherInfo.current.wind_speed }}</li>
+          <li><strong>Temperature:</strong> {{ weatherInfo.current.temp }}°</li>
+          <li><strong>Feels Like:</strong> {{ weatherInfo.current.feels_like }}°</li>
+          <li><strong>Humidity:</strong> {{ weatherInfo.current.humidity }}%</li>
+          <li><strong>Wind Speed:</strong> {{ weatherInfo.current.wind_speed }} mph</li>
         </ul>
       </div>
     </div>
@@ -24,14 +24,18 @@
 
   <div class="forecast-container" *ngIf="weatherInfo">
     <h2>Forecast</h2>
-    <div class="daily-forecast" *ngFor="let day of weatherInfo.daily">
-      <div class="forecast-detail">
-        <p><strong>{{ (day.dt | date: 'EEEE') }}</strong></p>
-        <img src="http://openweathermap.org/img/wn/{{day.weather[0].icon}}.png" alt="Weather Icon" class="weather-icon">
-        <p><strong>High:</strong> {{ day.temp.max }}</p>
-        <p><strong>Low:</strong> {{ day.temp.min }}</p>
+    <div class="daily-forecast">
+      <div class="forecast-card" *ngFor="let day of weatherInfo.daily">
+        <div class="forecast-detail">
+          <p><strong>{{ (day.dt * 1000) | date: 'EEEE' }}</strong></p>
+          <img src="http://openweathermap.org/img/wn/{{day.weather[0].icon}}.png" alt="Weather Icon" class="weather-icon">
+          <p><strong>High:</strong> {{ day.temp.max }}°</p>
+          <p><strong>Low:</strong> {{ day.temp.min }}°</p>
+        </div>
       </div>
     </div>
   </div>
-</div>
+  </div>
+  
+  
 </body>
