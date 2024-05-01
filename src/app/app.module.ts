@@ -13,7 +13,7 @@ import { AppComponent } from './app.component';
 export const routes: Routes = [
   { path: 'register', component: RegisterAccountComponent },
   { path: 'login', component: LoginAccountComponent },
-  { path: 'weather', component: WeatherComponent }
+  { path: '', component: WeatherComponent }
 ];
 
 @NgModule({
